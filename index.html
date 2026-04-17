@@ -59,6 +59,24 @@ body::after {
   animation: fadeIn 2.2s forwards;
 }
 
+/* INVITE TEXT - above envelope */
+.invite-text {
+  position: absolute;
+  top: 18%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(28px, 5.5vw, 42px);
+  color: #d4af37;
+  text-align: center;
+  white-space: nowrap;
+  text-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  opacity: 0;
+  animation: fadeInInvite 2.5s 1.2s forwards;
+  z-index: 12;
+  pointer-events: none;
+}
+
 /* TAP HINT */
 .tap-hint {
   position: absolute;
@@ -134,7 +152,7 @@ body::after {
   transition: all 1.8s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/* SEAL - preserved exactly as you like */
+/* SEAL */
 .seal {
   position: absolute;
   width: 56px;
@@ -224,6 +242,9 @@ body::after {
 @keyframes fadeIn { 
   to { opacity: 1; transform: translateY(0); } 
 }
+@keyframes fadeInInvite {
+  to { opacity: 1; }
+}
 @keyframes fadeOut { 
   to { opacity: 0; visibility: hidden; } 
 }
@@ -232,6 +253,10 @@ body::after {
 <body>
 
 <div class="intro"><div class="intro-text">The Christens</div></div>
+
+<!-- New text above envelope -->
+<div class="invite-text">You're cordially invited to</div>
+
 <audio id="openSound" src="envelope.mp3" preload="auto"></audio>
 <audio id="music" src="music.mp3" loop preload="auto"></audio>
 
@@ -441,7 +466,6 @@ body::after {
     snapTimeout = setTimeout(snapToNearestSide, 480);
   });
 
-  // Double click for desktop
   card.addEventListener('dblclick', resetTransform);
 
 })();
